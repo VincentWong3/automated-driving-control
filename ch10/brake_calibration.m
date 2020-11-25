@@ -1,6 +1,6 @@
-brake=0.1;%³õÊ¼»¯ÓÍÃÅ
+brake=0.1;%åˆå§‹åŒ–æ²¹é—¨
 for i=1:80
-    %¸Ã³ÌĞò·Ç³£ºÄÊ±£¬Èç¹ûĞèÒª¸ü¶à¸üÃÜ¼¯µÄÊı¾İ£¬ÇëÏÈ²âÊÔ
+    %è¯¥ç¨‹åºéå¸¸è€—æ—¶ï¼Œå¦‚æœéœ€è¦æ›´å¤šæ›´å¯†é›†çš„æ•°æ®ï¼Œè¯·å…ˆæµ‹è¯•
     sim('calibration');
     v_temp(:,i)=vx.data;
     a_temp(:,i)=ax.data;
@@ -10,18 +10,18 @@ for i=1:80
 end
 
 
-%ºÏ²¢,Ò»¶¨Òª×ª³ÉĞĞÏòÁ¿ÔÙºÏ²¢£¬·ñÔò»áµ¼ÖÂºÏ²¢Ê§°Ü
+%åˆå¹¶,ä¸€å®šè¦è½¬æˆè¡Œå‘é‡å†åˆå¹¶ï¼Œå¦åˆ™ä¼šå¯¼è‡´åˆå¹¶å¤±è´¥
 vbr=v_temp(:,1)';
 abr=a_temp(:,1)';
 br=brake_temp(:,1)';
-for i=2:80
+for i=2:length(a_temp(1,:))
     vbr=[vbr,v_temp(:,i)'];
     abr=[abr,a_temp(:,i)'];
     br=[br,brake_temp(:,i)'];
 end
 % 
-%ÄâºÏ
-F=scatteredInterpolant(vbr',abr',br');%×ª³ÉÁĞÏòÁ¿
+%æ‹Ÿåˆ
+F=scatteredInterpolant(vbr',abr',br');%è½¬æˆåˆ—å‘é‡
 vubr=0:0.05:50;
 aubr=-8:0.05:0;
 tablebr=zeros(length(vubr),length(aubr));
